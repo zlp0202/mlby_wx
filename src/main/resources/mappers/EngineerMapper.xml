@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mlby.dao.EngineerMapper" >
+  <resultMap id="BaseResultMap" type="com.mlby.pojo.Engineer" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_no" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="engineer_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="handle_situation" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="repair_desc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_evaluate" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="evaluate_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="user_idea" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_no, engineer_name, handle_situation, repair_desc, user_evaluate, evaluate_time, 
+    user_idea, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mlby_engineer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mlby_engineer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mlby.pojo.Engineer" >
+    insert into mlby_engineer (id, order_no, engineer_name, 
+      handle_situation, repair_desc, user_evaluate, 
+      evaluate_time, user_idea, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=INTEGER}, #{engineerName,jdbcType=VARCHAR}, 
+      #{handleSituation,jdbcType=VARCHAR}, #{repairDesc,jdbcType=VARCHAR}, #{userEvaluate,jdbcType=VARCHAR}, 
+      #{evaluateTime,jdbcType=TIMESTAMP}, #{userIdea,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mlby.pojo.Engineer" >
+    insert into mlby_engineer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="engineerName != null" >
+        engineer_name,
+      </if>
+      <if test="handleSituation != null" >
+        handle_situation,
+      </if>
+      <if test="repairDesc != null" >
+        repair_desc,
+      </if>
+      <if test="userEvaluate != null" >
+        user_evaluate,
+      </if>
+      <if test="evaluateTime != null" >
+        evaluate_time,
+      </if>
+      <if test="userIdea != null" >
+        user_idea,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="engineerName != null" >
+        #{engineerName,jdbcType=VARCHAR},
+      </if>
+      <if test="handleSituation != null" >
+        #{handleSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="repairDesc != null" >
+        #{repairDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userEvaluate != null" >
+        #{userEvaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateTime != null" >
+        #{evaluateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userIdea != null" >
+        #{userIdea,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mlby.pojo.Engineer" >
+    update mlby_engineer
+    <set >
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="engineerName != null" >
+        engineer_name = #{engineerName,jdbcType=VARCHAR},
+      </if>
+      <if test="handleSituation != null" >
+        handle_situation = #{handleSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="repairDesc != null" >
+        repair_desc = #{repairDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userEvaluate != null" >
+        user_evaluate = #{userEvaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateTime != null" >
+        evaluate_time = #{evaluateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userIdea != null" >
+        user_idea = #{userIdea,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mlby.pojo.Engineer" >
+    update mlby_engineer
+    set order_no = #{orderNo,jdbcType=INTEGER},
+      engineer_name = #{engineerName,jdbcType=VARCHAR},
+      handle_situation = #{handleSituation,jdbcType=VARCHAR},
+      repair_desc = #{repairDesc,jdbcType=VARCHAR},
+      user_evaluate = #{userEvaluate,jdbcType=VARCHAR},
+      evaluate_time = #{evaluateTime,jdbcType=TIMESTAMP},
+      user_idea = #{userIdea,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
